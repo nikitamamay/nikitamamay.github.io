@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+<title>Тернарные выражения - Ромашки</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="/asserts/css/style.css">
+<link rel="shortcut icon" href="/asserts/img/favicon.png" type="image/png">
+
+</head>
+<body>
+	<div class="banner ">
+	<div class="header">
+		<div class="positioner">
+			<ul class="nav">
+				<li class="logo">
+					<a href="/" title="На главную">
+						<img src="/asserts/img/daisy_logo_white_rus.svg" alt="Romashki Logo">
+					</a>
+				</li>
+				<li>
+					<a href="/kompas-3d/tips-and-tricks.html">
+						<div>Полезности <br>для Компас-3D</div>
+					</a>
+				</li>
+				<li>
+					<a href="/kompas-3d/gen-ternar.html">
+						<div>Тернарные <br> выражения</div>
+					</a>
+				</li>
+				<li>
+					<a href="/tolerances-and-fits/tolerances-and-fits.html">
+						<div>Допуски <br>и посадки</div>
+					</a>
+				</li>
+				<li>
+					<a href="/contacts.html">
+						<div>Контакты</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="banner-spacer"></div>
+	<div class="banner-content">
+		<div class="positioner banner-container">
+
+		<h1>Генератор тернарных выражений для&nbsp;Компас-3D</h1>
+			</div>
+	</div>
+</div>
+
+
+	<div class="main">
+		<div class="positioner">
+			<!--
+			<p>В данной программе считается, что &laquo;от&raquo; - значит включительно; &laquo;свыше&raquo; - значит невключительно.</p>
+
+			<p>Первый столбец - независимая переменная (&laquo;X&raquo;), последующие столбцы - зависимые от &laquo;Х&raquo; переменные (&laquo;Y<sub>1</sub>&raquo; ... &laquo;Y<sub>N</sub>&raquo;).</p>
+
+			<p>В первой строке должны быть заголовки столбцов. Их можно не указывать, но тогда в первую строку нужно написать какой-нибудь произвольный текст.</p>
+ -->
+			<div>
+				<textarea id="ta_input" class=""></textarea>
+			</div>
+
+			<p>
+				<label>
+					<input type="checkbox" id="cb_include_from">
+					Включать значение X в диапазон (использовать &laquo;от&raquo; вместо &laquo;свыше&raquo;)
+				</label>
+			</p>
+
+			<div>
+				<button id="btn_submit_input" class="button-submit">Сгенерировать</button>
+			</div>
+
+			<hr>
+
+			<div class="scrollarea">
+				<table id="table_input"></table>
+			</div>
+
+			<hr>
+
+			<table id="table_results"></table>
+
+		</div>
+	</div>
+
+	<div class="main gray">
+		<div class="positioner">
+			<h2>Для чего это нужно?</h2>
+
+			<p>При создании параметрических 3D-моделей и фрагментов возникают ситуации, когда необходимо создать зависимость одной переменной от другой (одного размера от другого).</p>
+
+			<p>Чаще такие ситуации возникают при моделировании стандартных или покупных изделий, для которых предоставляются таблицы типоразмеров. Например:</p>
+			<ul>
+				<li>размеры шпонки и шпоночного паза - ширина <code>b</code>, высота <code>h</code>, скругления шпонки <code>c</code>, глубины паза на валу <code>t1</code> и во втулке <code>t2</code> - связаны с диаметром вала <code>d</code>;</li>
+				<li>размеры стандартных изделий (болтов, гаек, шайб и т. д.) зависят от номинального диаметра резьбы;</li>
+				<li>можно выделить зависимость, например, размеров корпуса редуктора от межосевого расстояния;</li>
+				<li>и др.</li>
+			</ul>
+
+			<p>Зависимость между двумя переменными можно выразить непрерывной функцией, например, <code>y = x * 0.8</code> или <code>y = x^(1/3)</code>. Однако, такие простые зависимости для вышеобозначенных примеров встречаются лишь в общем виде, причем размеры округлены не по правилам математики, а по правилам машиностроения.</p>
+
+			<p>Известен способ решения проблемы задания произвольных (в том числе дискретных) зависимостей между переменными с помощью <a target="_blank" href="https://www.youtube.com/watch?v=aCyWhqLNKH8&">графиков из сплайнов</a>, предложенный Константином Корюкиным. Такой метод несколько трудоемкий, а в случаях, когда нужно задать зависимость в диапазонах переменной <code>x</code>, и вовсе неприменимый.</p>
+
+			<p>Еще один метод - создание тернарных (условных) выражений. Тернарные выражения отлично подходят для создания ступенчатых зависимостей, которые выражаются в виде таблицы.</p>
+
+			<iframe class="width-100" src="https://www.youtube.com/embed/11tYWHR8mk0?mute=1&loop=1&controls=0"></iframe> <!-- autoplay=1& -->
+		</div>
+	</div>
+
+	<div class="main">
+		<div class="positioner">
+			<h2>Как пользоваться?</h2>
+		</div>
+		<div class="positioner flex-tiles tiles-3 gallery-images-4-3">
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="imgs/libreoffice-table.png" alt="Таблица в LibreOffice Calc"></div>
+				<p><b class="b-accent">Шаг 1.</b> Создайте таблицу со&nbsp;значениями в табличном процессоре или текстовом редакторе (с символами табуляции в качестве разделителей столбцов).</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="imgs/gen-ternar.png" alt="Генерация тернарных выражений на сайте"></div>
+				<p><b class="b-accent">Шаг 2.</b> Скопируйте таблицу в поле ввода на сайте и нажмите &laquo;Сгенерировать&raquo;.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="imgs/copy-result.png" alt="Сгенерированное тернарное выражение"></div>
+				<p><b class="b-accent">Шаг 3.</b> Скопируйте полученное выражение.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="imgs/func-in-kompas.png" alt="Переменная с функцией в Компас-3D"></div>
+				<p><b class="b-accent">Шаг 4.</b> Создайте в Компас-3D переменную, выражение которой ссылается на функцию. Вставьте сгенерированное выражение для новой функции.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="imgs/kompas-final.png" alt="Переменные в Компас-3D"></div>
+				<p><b class="b-accent">Шаг 5.</b> Создайте параметрическую модель. Наслаждайтесь!</p>
+			</div>
+		</div>
+	</div>
+
+	<div class="main gray">
+		<div class="positioner">
+			<h2>Примеры использования</h2>
+			<p>Здесь и далее под словами, например, "параметризация завязана на диаметр вала" понимается следующее: переменная, отвечающая за диаметр вала, сделана внешней и от нее через тернарные выражения зависят другие переменные, отвечающие за другие размеры. <b>То есть мораль такова: достаточно изменить значение одной основной переменной, чтобы изменились другие зависимые переменные и размеры модели.</b></p>
+		</div>
+		<div class="positioner flex-tiles tiles-3 gallery-images-16-9">
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/подшипник.png" alt=""></div>
+				<p>Подшипник по ГОСТ 8338 типоразмеров 204...215, 304...315. Независимой переменной является число, обозначающее типоразмер; от него зависят все размеры.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/шпонка.png" alt=""></div>
+				<p>Шпонка по ГОСТ 23360. Тело серого цвета - непосредственно шпонка; тело красного цвета - шпоночный паз, который можно вычесть булевой операцией. Параметризация завязана на диаметр вала и требуемую длину шпонки (действительная длина шпонки выбирается как ближайшая из стандартного ряда).</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/проточка.png" alt=""></div>
+				<p>Проточка для наружной резьбы по ГОСТ 10549. Показан разрез. Параметризация завязана на диаметр и шаг резьбы.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/конец вала.png" alt=""></div>
+				<p>Конец вала по ГОСТ 12080/12081 длинного исполнения. Параметризация завязана на диаметр вала и флаг "конический/цилиндрический".</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/болт.png" alt=""></div>
+				<p>Болт по ГОСТ 7798. Параметризация завязана на диаметр и шаг резьбы, требуемую длину болта (действительная выбирается как ближайшая большая из стандартного ряда). Если шаг выбран как "0", используется крупный.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/гайка.png" alt=""></div>
+				<p>Гайка по ГОСТ 5915. Параметризация завязана на диаметр резьбы и шаг (если "0" - то крупный).</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/шайба.png" alt=""></div>
+				<p>Шайба по ГОСТ 11371. Параметризация завязана на диаметр резьбы крепежной детали.</p>
+			</div>
+			<div class="scalable-with-modal">
+				<div class="img-holder"><img class="gallery-image" src="examples/болтовое соединение.png" alt=""></div>
+				<p>Болтовое соединение как модель с болтом, шайбой, гайкой, а также с цилиндром отверстия с зазором по ГОСТ 11284 для вычитания булевой операцией. Параметризация завязана на толщину скрепляемых деталей и диаметр резьбы; шаг крупный. Длина болта рассчитывается еще и в зависимости от толщины шайбы и гайки и выбирается как ближайшая большая из стандартного ряда.</p>
+			</div>
+		</div>
+	</div>
+
+	
+
+<div class="footer">
+	<div class="positioner footer-flex">
+		<div class="footer-logo">
+			<a href="/" title="На главную" class="footer-a-image">
+				<img src="/asserts/img/daisy_white.svg" alt="Romashki Logo" class="footer-image">
+			</a>
+		</div>
+		<ul class="footer-ul">
+			<li>
+				<a href="/kompas-3d/gen-ternar.html">Тернарные выражения</a>
+			</li>
+			<li>
+				<a href="/kompas-3d/tips-and-tricks.html">Полезное для Компас-3D</a>
+			</li>
+			<!-- <li>
+				<a href="/calculator/calculator.php">Калькулятор погрешностей</a>
+			</li> -->
+			<!-- <li>
+				<a href="/eskd-design/eskd-design.html">Разработка по ЕСКД</a>
+			</li> -->
+			<!-- <li>
+				<a href="/eskd-classifier/eskd-classifier.html">Классификатор ЕСКД</a>
+			</li> -->
+			<li>
+				<a href="/tolerances-and-fits/tolerances-and-fits.html">Допуски и посадки</a>
+			</li>
+			<li>
+				<a href="/contacts.html">Контакты</a>
+			</li>
+		</ul>
+		<div style="align-self: flex-end;">
+			<p>Фотография от <a target="_blank" href="https://unsplash.com/photos/JV0y2YgXJcY">virginia lackinger</a>.</p>
+			<p>Иконки от <a target="_blank" href="https://icons8.com">Icons8</a>.</p>
+			<hr class="footer-spacer">
+			<ul class="footer-button-bar">
+				<li>
+					<a target="_blank" href="mailto:nikitamamay@mail.ru" title="Электронная почта" class="footer-a-image">
+						<img src="/asserts/img/mail.svg" alt="Email">
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://t.me/nikitosmamay" title="Telegram" class="footer-a-image">
+						<img src="/asserts/img/telegram.svg" alt="Telegram">
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://vk.com/nikitosmamay" title="ВКонтакте" class="footer-a-image">
+						<img src="/asserts/img/vk.svg" alt="Vkontakte">
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://github.com/nikitamamay" title="Github" class="footer-a-image">
+						<img src="/asserts/img/github.svg" alt="Github">
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://stepik.org/users/46383149" title="Stepik.org" class="footer-a-image">
+						<img src="/asserts/img/stepik.svg" alt="Stepik">
+					</a>
+				</li>
+				<li>
+					<a target="_blank" href="https://www.youtube.com/channel/UCOPehtMtBZDt4Pts8rzUkdQ" title="YouTube" class="footer-a-image">
+						<img src="/asserts/img/youtube.svg" alt="Youtube">
+					</a>
+				</li>
+			</ul>
+			<hr class="footer-spacer">
+			<p>&copy;&nbsp;Никита Мамай, 2021-2023.</p>
+		</div>
+	</div>
+</div>
+
+
+<!-- Modal window -->
+<div style="display: none;" id="modal-background">
+	<div id="modal-window">
+		<div id="modal-content"></div>
+	</div>
+</div>
+
+
+<script src="/asserts/js/script.js"></script>
+
+
+	<script src="gen-ternar.js"></script>
+</body>
+</html>

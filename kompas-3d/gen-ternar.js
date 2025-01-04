@@ -5,25 +5,12 @@ let table_input = document.getElementById("table_input");
 let btn_submit_input = document.getElementById("btn_submit_input");
 let table_results = document.getElementById("table_results");
 let cb_include_from = document.getElementById("cb_include_from");
+let cb_has_headings = document.getElementById("cb_has_headings");
 
 let all_values = [];
 
+let ternar_exprs = [];
 
-/**
- * @param {Array<Array<Number>} values Два столбца с числами. Первый столбец - X, второй - Y.
- * @param {String} sign Знак операции сравнения в тернарном выражении. По-умолчанию `>` (т.е. "не_включительно").
- * @param {String} var_name Название переменной X в выражении. По-умолчанию `t`.
- * @returns {String} Тернарное выражение на синтаксисе Компас-3D.
- */
-const f1 = (values, sign = ">", var_name = "t") => {
-    let ternar = String(values[0][1])  // Последнее значение при `else`
-    for (let i = 1; i < values.length; ++i) {
-		let var_name_from = values[i][0];
-		let value = values[i][1];
-        ternar = `${var_name}${sign}${var_name_from}?${value}:(${ternar})`;
-	}
-    return ternar;
-}
 
 
 
@@ -35,8 +22,9 @@ const f1 = (values, sign = ">", var_name = "t") => {
  * @param {String} var_name Название переменной X в выражении. По-умолчанию `t`.
  * @returns {String} Тернарное выражение на синтаксисе Компас-3D.
  */
-const f11 = (values, index_X, index_Y, including_from = false, var_name = "t") => {
-    let ternar = String(values[0][index_Y])  // Последнее значение при `else`
+const generate_ternar_expr = (values, index_X, index_Y, including_from = false, var_name = "t") => {
+	let prev_value = values[0][index_Y];
+    let ternar = String(prev_value);  // Последнее значение при `else`
 
 	let sign = including_from ? ">=" : ">";
 
@@ -44,8 +32,13 @@ const f11 = (values, index_X, index_Y, including_from = false, var_name = "t") =
 		let var_name_from = values[i][index_X];
 		let value = values[i][index_Y];
 
+		// пропуск подряд идущего дублирующегося значения Y
+		if (prev_value == value) continue;
+
 		let cond = `${var_name}${sign}${var_name_from}`
         ternar = `${cond}?${value}:(${ternar})`;
+
+		prev_value = value;
 	}
 
     return ternar;
@@ -53,9 +46,36 @@ const f11 = (values, index_X, index_Y, including_from = false, var_name = "t") =
 
 
 
+const generate_headers = (length) => {
+	let headers = Array();
+
+	headers.push("x");
+
+	for (let i = 0; i < length - 1; i++) {
+		headers.push("y" + String(i + 1));
+	}
+
+	return headers;
+}
+
+
+const copy_ternar = (index) => {
+	navigator.clipboard.writeText(ternar_exprs[index]);
+}
+
+const animate_copy = (button) => {
+	button.innerHTML = "&check;&nbsp;Скопировано";
+	setTimeout(() => {
+		button.innerHTML = "Копировать";
+	}, 1000);
+}
+
 
 btn_submit_input.onclick = () => {
-	all_values = []
+	all_values = [];
+	ternar_exprs = [];
+	table_input.innerHTML = "";
+	table_results.innerHTML = "";
 
 	// Парсинг исходных данных
 		for (let line of ta_input.value.split("\n")) {
@@ -66,51 +86,56 @@ btn_submit_input.onclick = () => {
 			all_values.push(line_vals);
 		}
 
-	let headers = all_values[0]
-	let vals = all_values.slice(1)
+		if (all_values.length == 0) return;
 
+	// Определение заголовков столбцов
+		if (! cb_has_headings.checked) {
+			let headers = generate_headers(all_values[0].length);
+			all_values.unshift(headers);
+		}
+		let headers = all_values[0];
+		let vals = all_values.slice(1);
+
+	// Сортировка значений по X
+		vals.sort((line_a, line_b) => line_a[0] - line_b[0]);
 
 	// Вывод исходных данных в таблицу (исключительно для визуализации)
-		let html_input = ""
-		for (let row of all_values) {
+		let html_input = "";
+
+		html_input += "<tr>";
+			for (let data of headers) {
+				html_input += `<th>${data}</th>`;
+			}
+		html_input += "</tr>";
+
+		for (let row of vals) {
 			html_input += "<tr>";
 				for (let data of row) {
 					html_input += `<td>${data}</td>`;
 				}
 			html_input += "</tr>";
 		}
+
 		table_input.innerHTML = html_input;
 
-
-	let include_from = cb_include_from.checked;
-
-	// Генерация и вывод тернарных выражений
-		let html_results = ""
+	// Генерация тернарных выражений
+		let include_from = cb_include_from.checked;
 
 		for (let i = 0; i < vals[0].length; ++i) {
-			// генерация тернарного выражения
-				let r = f11(vals, 0, i, include_from, );
+			let r = generate_ternar_expr(vals, 0, i, include_from, );
+			ternar_exprs.push(r);
+		}
 
-			// вывод выражения в таблицу с результатами
-				html_results += "<tr>";
-				html_results += `<td>${headers[i]}</td>`;
-				html_results += `<td>${r}</td>`;
-				html_results += "</tr>";
+	// Вывод тернарных выражений в таблицу с результатами
+		let html_results = ""
+
+		for (let i = 0; i < ternar_exprs.length; ++i) {
+			html_results += "<tr>";
+			html_results += `<td>${headers[i]}</td>`;
+			html_results += `<td>${ternar_exprs[i]}</td>`;
+			html_results += `<td><button style="width: 150px;" onclick="copy_ternar(${i}); animate_copy(this)">Копировать</button></td>`;
+			html_results += "</tr>";
 		}
 		table_results.innerHTML = html_results;
 
-
-
-	// def f3(vals: list[float], var: str = "t", sign: str = ">=", k: float = 0) -> str:
-
-    // v: list[tuple[float, float]] = []
-
-    // k = 1 - k
-
-    // for i in range(-1, len(vals) - 1):
-    //     values_i = vals[max(i, 0)]
-    //     value_cond = values_i + k * (vals[i+1] - values_i)
-    //     v.append((value_cond, vals[i+1]))
-
-    // return f1(v, sign, var)
 };

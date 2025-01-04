@@ -61,13 +61,19 @@
 			<p>В первой строке должны быть заголовки столбцов. Их можно не указывать, но тогда в первую строку нужно написать какой-нибудь произвольный текст.</p>
  -->
 			<div>
-				<textarea id="ta_input" class=""></textarea>
+				<textarea id="ta_input" class="" placeholder="Вставьте сюда таблицу значений, разделенных символом табуляции..."></textarea>
 			</div>
 
 			<p>
 				<label>
 					<input type="checkbox" id="cb_include_from">
 					Включать значение X в диапазон (использовать &laquo;от&raquo; вместо &laquo;свыше&raquo;)
+				</label>
+			</p>
+			<p>
+				<label>
+					<input type="checkbox" id="cb_has_headings" checked>
+					Первая строка содержит наименования столбцов
 				</label>
 			</p>
 
@@ -78,12 +84,20 @@
 			<hr>
 
 			<div class="scrollarea">
-				<table id="table_input"></table>
+				<table id="table_input">
+					<tr>
+						<td class="placeholder">Здесь будет предпросмотр исходной таблицы...</td>
+					</tr>
+				</table>
 			</div>
 
 			<hr>
 
-			<table id="table_results"></table>
+			<table id="table_results" class="monospace">
+				<tr>
+					<td class="placeholder">Здесь будет результат...</td>
+				</tr>
+			</table>
 
 		</div>
 	</div>
@@ -250,7 +264,7 @@
 				</li>
 			</ul>
 			<hr class="footer-spacer">
-			<p>&copy;&nbsp;Никита Мамай, 2021-2023.</p>
+			<p>&copy;&nbsp;Никита Мамай, 2021-2025.</p>
 		</div>
 	</div>
 </div>

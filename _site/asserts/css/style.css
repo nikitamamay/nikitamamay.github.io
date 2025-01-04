@@ -7,10 +7,10 @@
 }
 
 :root {
-	--accent-color: #333; #1e6129;
-	--accent-color-lighter: #555; #5fc16f;
-	--accent-color-light: #777; #cce7d1;
-	--accent-color-darker: #000; #123D19;
+	--accent-color: #1e6129; #333;
+	--accent-color-lighter: #5fc16f; #555;
+	--accent-color-light: #cce7d1; #777;
+	--accent-color-darker: #123D19; #000;
 	--color-links: #0645ad;
 	--color-links-visited: #0b0080;
 }
@@ -414,6 +414,9 @@ abbr {
 	border:  1px solid gray;
 	padding: 3px;
 }
+.main th {
+	background-color: var(--accent-color-light);
+}
 .main table p {
 	text-indent: 0;
 	margin: 0;
@@ -472,6 +475,11 @@ abbr {
 }
 .main a:visited {
 	color: var(--color-links-visited);
+}
+
+
+.placeholder {
+	color: #888;
 }
 
 

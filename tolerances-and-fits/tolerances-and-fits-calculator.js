@@ -307,18 +307,25 @@ const get_max_zeros = (...numbers) => {
 }
 
 
-const get_pretty_number_s = (x, max_zeros = 0) => {
+const get_pretty_number_s = (x, digits_count_after_dot = 0) => {
+	if (digits_count_after_dot < 0) digits_count_after_dot = 0;
 	let s_num = String(round_tail(x));
+	if (x > 0) {
+		s_num = "+" + s_num;
+	}
+
 	let i = s_num.indexOf(".");
 	if (i == -1) {
 		i = s_num.length;
 		s_num += ".";
 	}
-	while (s_num.length < i + 1 + max_zeros) {
-		s_num += "0"
+
+	if (digits_count_after_dot == 0) {
+		s_num = s_num.slice(0, i);
 	}
-	if (x > 0) {
-		s_num = "+" + s_num;
+	else {
+		s_num += "0".repeat(digits_count_after_dot);
+		s_num = s_num.slice(0, i + digits_count_after_dot + 1);
 	}
 	return s_num;
 }

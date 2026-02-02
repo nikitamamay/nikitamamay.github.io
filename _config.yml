@@ -12,4 +12,6 @@ exclude:
 
 domain: nikitamamay.github.io
 url: https://nikitamamay.github.io
-baseurl: /_site/
+# baseurl: /_site/
+source: ./src
+destination: ./_site

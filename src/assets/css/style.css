@@ -7,10 +7,10 @@
 }
 
 :root {
-	--accent-color: #1e6129; #333;
-	--accent-color-lighter: #5fc16f; #555;
-	--accent-color-light: #cce7d1; #777;
-	--accent-color-darker: #123D19; #000;
+	--accent-color: #1e6129;
+	--accent-color-lighter: #5fc16f;
+	--accent-color-light: #cce7d1;
+	--accent-color-darker: #123D19;
 	--color-links: #0645ad;
 	--color-links-visited: #0b0080;
 }
@@ -25,7 +25,8 @@ body {
 	flex-direction: column;
     background-color: white;
 	font-family: "Open Sans", sans-serif;
-    font-size: 120%;
+	line-height: 1.2;
+    /* font-size: 120%; */
 }
 
 
@@ -188,7 +189,7 @@ abbr {
 }
 
 .banner {
-	background: #666 url("/asserts/img/virginia-lackinger-JV0y2YgXJcY-unsplash.jpg") center 40% no-repeat;
+	background: var(--accent-color) url("/assets/img/virginia-lackinger-JV0y2YgXJcY-unsplash.jpg") center 40% no-repeat;
 	background-size: cover;
 	color: white;
 	display: flex;
@@ -307,7 +308,7 @@ abbr {
 
 .main {
 	padding: 20px 0;
-	line-height: 1.15;
+	line-height: 1.2;
 	font-size: 12pt;
 }
 .main p {

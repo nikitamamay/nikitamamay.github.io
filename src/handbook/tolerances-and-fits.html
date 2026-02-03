@@ -5,6 +5,7 @@ title: Допуски и посадки
 <html lang="ru">
 <head>
 	{% include head.html %}
+	<link rel="stylesheet" href="/assets/css/tolerances.css">
 </head>
 <body>
 	{% include banner_start.html %}
@@ -12,7 +13,7 @@ title: Допуски и посадки
 	{% include banner_end.html %}
 
 	<div class="main">
-		<div class="positioner flex-tiles tiles-2">
+		<div class="positioner flex-tiles flex-tiles-2">
 			<div style="min-height: 175px;">
 				<input class="monospace" type="text" id="fit-input" oninput="parse_fit()" placeholder="45 L0 / k6">
 				<p id="fit-did-you-mean"></p>
@@ -41,7 +42,7 @@ title: Допуски и посадки
 		</div>
 	</div>
 
-	<div class="main gray">
+	<div class="main grey">
 		<div class="positioner">
 			<h1>Рекомендуемые посадки</h1>
 				<p>В таблице приведены посадки в системе отверстия, но следует понимать, что существуют соответствующие посадки в системе вала.</p>

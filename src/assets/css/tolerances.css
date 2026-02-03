@@ -1,0 +1,21 @@
+
+.inline-frac {
+	display: inline-block;
+	vertical-align: middle;
+}
+.inline-frac.small {
+	font-size: 80%;
+}
+.inline-frac .hr {
+	display: block;
+	height: 1px;
+	width: 100%;
+	border: none;
+	background-color: black;
+}
+
+.fit-output {
+	font-size: 20pt;
+	font-family: monospace;
+	font-style: italic;
+}

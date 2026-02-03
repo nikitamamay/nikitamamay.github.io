@@ -1,5 +1,7 @@
 
 
+<div class="footer-body-spacer"></div>
+
 <div class="footer">
 	<div class="positioner footer-flex">
 		<div class="footer-logo">
@@ -11,8 +13,8 @@
 			<li>
 				<a href="/kompas-3d">Компас-3D</a>
 				<ul>
-					<li><a href="/kompas-3d/conditional-expressions">Условные выражения</a></li>
 					<li><a href="/kompas-3d/tips-and-tricks">Советы и хитрости</a></li>
+					<li><a href="/kompas-3d/conditional-expressions">Условные выражения</a></li>
 					<li><a href="/kompas-3d/macros">Макросы</a></li>
 				</ul>
 			</li>
@@ -74,9 +76,13 @@
 
 <!-- Modal window -->
 <div style="display: none;" id="modal-background">
-	<div id="modal-window">
-		<div id="modal-content"></div>
+	<div class="modal-image-container">
+		<img id="modal-image">
 	</div>
+	<div id="modal-content" class="positioner"></div>
+	<button class="modal-contol modal-contol-left" onclick="modal_switch(-1)">Предыдущее</button>
+	<button class="modal-contol modal-contol-right" onclick="modal_switch(+1)">Следующее</button>
+	<button class="modal-contol modal-contol-close" onclick="modal_bg.close()">Закрыть</button>
 </div>
 
 

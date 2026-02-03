@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="16"
+   height="16"
+   viewBox="0 0 16 16"
+   fill="none"
+   version="1.1"
+   id="svg3"
+   sodipodi:docname="vkvideo.svg"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs3" />
+  <sodipodi:namedview
+     id="namedview3"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="15.66"
+     inkscape:cx="8.7484036"
+     inkscape:cy="10.057471"
+     inkscape:window-width="1920"
+     inkscape:window-height="1019"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3" />
+  <path
+     d="M 0,7.68 C 0,4.0592 0,2.2496 1.1248,1.1248 2.2496,0 4.0592,0 7.68,0 h 0.64 c 3.6208,0 5.4304,0 6.5552,1.1248 C 16,2.2496 16,4.0592 16,7.68 v 0.64 c 0,3.6208 0,5.4304 -1.1248,6.5552 C 13.7504,16 11.9408,16 8.32,16 H 7.68 C 4.0592,16 2.2496,16 1.1248,14.8752 0,13.7504 0,11.9408 0,8.32 Z"
+     fill="#0077ff"
+     id="path1"
+     style="stroke-width:1" />
+  <path
+     d="m 9.332832,0 c -2.9552,0.0096 -4.528,0.1088 -5.5424,1.1232 -1.1248,1.1248 -1.1248,2.9344 -1.1248,6.5552 v 0.64 c 0,3.6208 0,5.4304 1.1248,6.5552 1.0144,1.0144 2.5872,1.1136 5.5424,1.1232 2.9552,-0.0096 4.528,-0.1088 5.5424,-1.1232 C 16,13.7488 16,11.9392 16,8.3184 v -0.64 C 16,4.0576 16,2.248 14.875232,1.1232 13.860832,0.1104 12.288032,0.0112 9.332832,0 Z"
+     fill="#ff2b42"
+     id="path2"
+     style="stroke-width:1" />
+  <path
+     d="m 11.289568,6.5776 c 0.8096,0.4672 1.2128,0.7008 1.3488,1.0048 0.1184,0.2656 0.1184,0.5696 0,0.8352 -0.136,0.3056 -0.5408,0.5376 -1.3488,1.0048 l -2.216,1.28 c -0.8096,0.4672 -1.2128,0.7008 -1.5456,0.6656 -0.2896,-0.0304 -0.552,-0.1824 -0.7232,-0.4176 C 6.607968,10.68 6.607968,10.2128 6.607968,9.28 V 6.72 c 0,-0.9344 0,-1.4016 0.1968,-1.6704 0.1712,-0.2352 0.4336,-0.3872 0.7232,-0.4176 0.3312,-0.0352 0.736,0.1984 1.5456,0.6656 z"
+     fill="#ffffff"
+     id="path3"
+     style="stroke-width:1" />
+</svg>

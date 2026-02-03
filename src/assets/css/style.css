@@ -656,9 +656,44 @@ textarea {
 	min-height: 100px;
 	height: 100px;
 }
+
+.link-vkvideo::before,
+.link-youtube::before,
+.link-dzen::before,
+.link-rutube::before {
+	content: "";
+	display: inline-block;
+	width:  12px;
+	height: 12px;
+	margin-right: 3px;
+	vertical-align: -1px;
+	background-position: center;
+	background-size: contain;
+	background-repeat: no-repeat;
+	/* filter: grayscale(1); */
+	/* opacity: 0.5; */
+}
+.link-vkvideo::before {
+	background-image: url("/assets/img/vkvideo.svg");
+}
+.link-dzen::before {
+	background-image: url("/assets/img/dzen.svg");
+}
+.link-rutube::before {
+	background-image: url("/assets/img/rutube.svg");
+}
+.link-youtube::before {
+	background-image: url("/assets/img/youtube.svg");
+}
+
+
 .monospace {
 	font-family: "Consolas", monospace;
 }
+
+
+
+
 .align-center {
 	text-align: center;
 }
@@ -686,6 +721,11 @@ textarea {
 .scalable-with-modal:hover {
 	outline: 2px solid var(--accent-color-lighter);
 }
+
+
+
+
+
 
 
 /*** Modal ***/

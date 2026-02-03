@@ -15,3 +15,4 @@ url: https://nikitamamay.github.io
 # baseurl: /_site/
 source: ./src
 destination: ./_site
+theme: null

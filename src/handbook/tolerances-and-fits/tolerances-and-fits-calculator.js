@@ -30,7 +30,7 @@ var bearings_inner_deviations = [];
 var bearings_outer_deviations = [];
 
 
-load_data('/tolerances-and-fits/data_complete.tsv', (s_data) => {
+load_data('data_complete.tsv', (s_data) => {
 	console.dir(s_data.split("\n"));
 	let data = [];
 

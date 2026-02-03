@@ -1,0 +1,33 @@
+---
+title: Справочник машиностроителя
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	{% include head.html %}
+</head>
+<body>
+	{% include banner_start.html %}
+		<h1>Справочник машиностроителя</h1>
+	{% include banner_end.html %}
+
+    <div class="main">
+        <div class="positioner flex-cards">
+        	<div class="card">
+        		<a href="/handbook/tolerances-and-fits">
+        			<img class="card-image" src="/assets/logos/size-tolerances.svg">
+	        		<p>Допуски и посадки</p>
+	        	</a>
+        	</div>
+        	<!-- <div class="card">
+        		<a href="/kompas-3d/geometric-tolerances">
+        			<img class="card-image" src="/assets/logos/geometric-tolerances.svg">
+	        		<p>Допуски формы и местоположения</p>
+	        	</a>
+        	</div> -->
+        </div>
+    </div>
+
+	{% include footer.html %}
+</body>
+</html>

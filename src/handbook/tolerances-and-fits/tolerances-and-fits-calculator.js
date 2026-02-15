@@ -30,29 +30,6 @@ var bearings_inner_deviations = [];
 var bearings_outer_deviations = [];
 
 
-load_data('data_complete.tsv', (s_data) => {
-	console.dir(s_data.split("\n"));
-	let data = [];
-
-	for (let line of s_data.split("\n")) {
-		line = line.trim()
-		if (line != "")
-			data.push(line.split("\t").map(s => Number(s.trim())))
-	}
-
-	tolerances = data.slice(LINE_NUMBERS[0], LINE_NUMBERS[1])  // Tolerances
-
-	holes1_base_deviations = data.slice(LINE_NUMBERS[1], LINE_NUMBERS[2])  // A--C, R--ZC
-	holes2_base_deviations = data.slice(LINE_NUMBERS[2], LINE_NUMBERS[3])  // CD--P, deltas
-
-	shafts1_base_deviations = data.slice(LINE_NUMBERS[3], LINE_NUMBERS[4])  // a--c, r--zc
-	shafts2_base_deviations = data.slice(LINE_NUMBERS[4], LINE_NUMBERS[5])  // cd--p
-
-	bearings_inner_deviations = data.slice(LINE_NUMBERS[5], LINE_NUMBERS[6])
-	bearings_outer_deviations = data.slice(LINE_NUMBERS[6], undefined)
-
-	parse_fit()
-});
 
 
 const get_quality_index = (quality) => {
@@ -336,6 +313,7 @@ let fit_input = document.getElementById("fit-input");
 let fit_pretty_print = document.getElementById("fit-pretty-print");
 let fit_output = document.getElementById("fit-output");
 let fit_did_you_mean = document.getElementById("fit-did-you-mean");
+let fit_share_link = document.getElementById("fit-share-link");
 
 let el_S_max = document.querySelector("#fit-output-1 td:first-child");
 let el_S_max_value = document.querySelector("#fit-output-1 td:last-child");
@@ -347,10 +325,19 @@ let el_Tp = document.querySelector("#fit-output-4 td:last-child");
 let current_fit = {};
 
 
+fit_input.oninput = () => {
+	parse_fit();
+
+	// сейчас сделано неверно: нужно обернуть любые присвоения `fit_input.value =` (а не только oninput) в специальную функцию, которая и будет делать replaceState()
+	// history.replaceState(null, null, get_href());
+}
+
+
 const parse_fit = () => {
 	current_fit.size = 0;
     fit_pretty_print.innerHTML = "";
     fit_did_you_mean.innerHTML = "";
+		fit_share_link.innerHTML = "";
 	el_S_max_value.innerHTML = "";
 	el_S_min_value.innerHTML = "";
 	el_S_avg.innerHTML = "";
@@ -375,6 +362,8 @@ const parse_fit = () => {
 		        let s_ei = ei != 0 ? get_pretty_number_s(ei, max_zeros) : "&nbsp;";
 
 				fit_pretty_print.innerHTML = `${size} ${bd}${q} ( <span class="inline-frac small">${s_es}<br>${s_ei}</span> )`;
+
+				share_link();
 
 				return;
 			}
@@ -437,6 +426,8 @@ const parse_fit = () => {
 		            fit_did_you_mean.innerHTML = `Возможно, вы имели в виду <a href="javascript:;" onclick="fit_input.value = '${text}'; parse_fit()">${text}</a>?`
 		        }
 
+						share_link();
+
 				return;
 			}
 
@@ -464,6 +455,32 @@ const apply_fit = (fit) => {
 }
 
 
+const get_input_query = () => {
+	let sp = new URLSearchParams(window.location.search);
+	return sp.get("input");
+}
+
+const get_href = () => {
+	let sp = new URLSearchParams(window.location.search);
+	sp.set("input", fit_input.value.trim());
+	let url = new URL(window.location.href);
+	url.search = sp.toString();
+	return url.toString();
+}
+
+
+const share_link = () => {
+	let url = get_href();
+	let share_link = document.createElement("a");
+	share_link.href = "javascript:;";
+	share_link.innerHTML = "Скопировать ссылку";
+	share_link.onclick = (event) => {
+		history.pushState(null, null, url);
+		navigator.clipboard.writeText(url);
+		animate_copy(share_link);
+	}
+	fit_share_link.append(share_link);
+}
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -471,4 +488,33 @@ document.addEventListener("DOMContentLoaded", () => {
 	for (let el of table.querySelectorAll("td, th")) {
 		el.innerHTML = el.innerHTML.replaceAll(/([A-Za-z]{1,2})\s*([0-9]{1,2})\s*[\\\/]?\s*([A-Za-z]{1,2})\s*([0-9]{1,2})/g, `<a href="javascript:;" onclick="apply_fit('$1$2 / $3$4')" class="inline-frac">$1$2<span class="hr"></span>$3$4</a>`)
 	}
+
+	load_data('data_complete.tsv', (s_data) => {
+		console.dir(s_data.split("\n"));
+		let data = [];
+
+		for (let line of s_data.split("\n")) {
+			line = line.trim()
+			if (line != "")
+				data.push(line.split("\t").map(s => Number(s.trim())))
+		}
+
+		tolerances = data.slice(LINE_NUMBERS[0], LINE_NUMBERS[1])  // Tolerances
+
+		holes1_base_deviations = data.slice(LINE_NUMBERS[1], LINE_NUMBERS[2])  // A--C, R--ZC
+		holes2_base_deviations = data.slice(LINE_NUMBERS[2], LINE_NUMBERS[3])  // CD--P, deltas
+
+		shafts1_base_deviations = data.slice(LINE_NUMBERS[3], LINE_NUMBERS[4])  // a--c, r--zc
+		shafts2_base_deviations = data.slice(LINE_NUMBERS[4], LINE_NUMBERS[5])  // cd--p
+
+		bearings_inner_deviations = data.slice(LINE_NUMBERS[5], LINE_NUMBERS[6])
+		bearings_outer_deviations = data.slice(LINE_NUMBERS[6], undefined)
+
+		let input_query = get_input_query();
+		if (input_query !== null) {
+			fit_input.value = input_query;
+		}
+
+		parse_fit();
+	});
 })

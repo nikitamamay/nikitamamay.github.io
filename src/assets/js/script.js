@@ -48,6 +48,16 @@ const modal_switch = (increment = 0) => {
 }
 
 
+
+const animate_copy = (element) => {
+	let old = element.innerHTML;
+	element.innerHTML = "&check;&nbsp;Скопировано";
+	setTimeout(() => {
+		element.innerHTML = old;
+	}, 1000);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
 	for (let el of document.querySelectorAll(".scalable-with-modal")) {
 		let img = null;

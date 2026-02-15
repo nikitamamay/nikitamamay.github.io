@@ -15,27 +15,28 @@ title: Допуски и посадки
 	<div class="main">
 		<div class="positioner flex-tiles flex-tiles-2">
 			<div style="min-height: 175px;">
-				<input class="monospace" type="text" id="fit-input" oninput="parse_fit()" placeholder="45 L0 / k6">
+				<input class="monospace" type="text" id="fit-input" placeholder="45 L0 / k6">
 				<p id="fit-did-you-mean"></p>
 				<p class="fit-output block-centered" id="fit-pretty-print"></p>
+				<p id="fit-share-link"></p>
 			</div>
 			<div>
-				<table id="fit-output" class="table-output">
+				<table id="fit-output" class="table-full-width">
 					<tr id="fit-output-1">
 						<td>Максимальный зазор</td>
-						<td></td>
+						<td class="text-align-right"></td>
 					</tr>
 					<tr id="fit-output-2">
 						<td>Минимальный зазор</td>
-						<td></td>
+						<td class="text-align-right"></td>
 					</tr>
 					<tr id="fit-output-3">
 						<td>Среднее</td>
-						<td></td>
+						<td class="text-align-right"></td>
 					</tr>
 					<tr id="fit-output-4">
 						<td>Допуск посадки</td>
-						<td></td>
+						<td class="text-align-right"></td>
 					</tr>
 				</table>
 			</div>
@@ -48,7 +49,7 @@ title: Допуски и посадки
 				<p>В таблице приведены посадки в системе отверстия, но следует понимать, что существуют соответствующие посадки в системе вала.</p>
 		</div>
 		<div class="positioner-full-width allow-horizontal-scrolling">
-			<table id="fix-slashes" class="centered hyphens">
+			<table id="fix-slashes" class="centered hyphens table-colspan-rowspan-align text-align-center table-hover-highlight">
 				<tr class="tr-rotated-90">
 					<td rowspan="2"></td>
 					<td colspan="3">с большими зазорами</td>
@@ -272,7 +273,7 @@ title: Допуски и посадки
 			<h1>Применение посадок</h1>
 			<p>Источники:</p>
 			<ul>
-				<li>Палей&nbsp;М.&nbsp;А. и др. Допуски и посадки: Справочник: В 2&nbsp;ч. Ч.1 - 8-е изд., перераб. и доп. - СПб.: Политехника, 2001. - 576&nbsp;с., ил.</li>
+				<li>Палей М. А. и др. Допуски и посадки: Справочник: В 2 ч. Ч. 1 - 8-е изд., перераб. и доп. - СПб.: Политехника, 2001. - 576 с., ил.</li>
 			</ul>
 		</div>
 		<div class="positioner-full-width flex-tiles-in-row allow-horizontal-scrolling hyphens">

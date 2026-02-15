@@ -19,3 +19,41 @@
 	font-family: monospace;
 	font-style: italic;
 }
+
+
+
+/* GT - Geometric Tolerances */
+/* <sub><span class="GT GT-1">соосность</span></sub> */
+.GT {
+	display: inline-block;
+	font-size: 0;
+	line-height: 16px;
+	width: 16px;
+	height: 16px;
+	background-image: url("/assets/img/geometric-tolerances.svg");
+	background-repeat: no-repeat;
+}
+.GT-0, .GT-1, .GT-2, .GT-3, .GT-4, .GT-5, .GT-6, .GT-7,
+.GT-8, .GT-9, .GT-10, .GT-11, .GT-12, .GT-13, .GT-14, .GT-15 { background-position-y: 0px ;}
+.GT-0  { background-position-x: 0px; }
+.GT-1  { background-position-x: -16px; }
+.GT-2  { background-position-x: -32px; }
+.GT-3  { background-position-x: -48px; }
+.GT-4  { background-position-x: -64px; }
+.GT-5  { background-position-x: -80px; }
+.GT-6  { background-position-x: -96px; }
+.GT-7  { background-position-x: -112px; }
+.GT-8  { background-position-x: -128px; }
+.GT-9  { background-position-x: -144px; }
+.GT-10 { background-position-x: -160px; }
+.GT-11 { background-position-x: -176px; }
+.GT-12 { background-position-x: -192px; }
+.GT-13 { background-position-x: -208px; }
+.GT-14 { background-position-x: -224px; }
+.GT-15 { background-position-x: -240px; }
+
+sub .GT,
+sup .GT {
+	scale: 0.8;
+}
+

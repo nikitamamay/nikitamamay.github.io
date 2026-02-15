@@ -1,0 +1,132 @@
+---
+title: Шпоночные соединения
+---
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	{% include head.html %}
+	<link rel="stylesheet" href="/assets/css/tolerances.css">
+</head>
+<body>
+	{% include banner_start.html %}
+	<h1>{{ page.title }}</h1>
+	{% include banner_end.html %}
+
+	<div class="main">
+		<div class="positioner">
+			<img src="keys1.svg" alt="Размеры шпонок" width="600px">
+			<img src="keys2.svg" alt="Размеры и допуски шпоночных пазов" width="600px">
+
+			<table class="table-hover-highlight text-align-center">
+				<tr>
+					<th colspan="12">Размеры шпонок и шпоночных пазов</th>
+				</tr>
+				<tr>
+					<th colspan="2">Диаметр вала<a href="#table-note1">*</a></th>
+					<th>Ширина шпонки</th>
+					<th>Высота шпонки</th>
+					<th colspan="2">Фаска шпонки</th>
+					<th>Длина шпонки минимальная</th>
+					<th>Глубина паза на валу</th>
+					<th>Глубина паза во втулке</th>
+					<th>Верхнее отклонение глубин</th>
+					<th colspan="2">Скругление паза</th>
+				</tr>
+				<tr>
+					<th>d (свыше)</th>
+					<th>d (до)</th>
+					<th>b</th>
+					<th>h</th>
+					<th>s, r (max)</th>
+					<th>s, r (min)</th>
+					<th>l (min)</th>
+					<th>t1</th>
+					<th>t2</th>
+					<th>es (t1, t2)</th>
+					<th>r1, s1 (max)</th>
+					<th>r1, s1 (min)</th>
+				</tr>
+				<tbody><tr><td>&gt;6</td><td>8</td><td>2</td><td>2</td><td>0.25</td><td>0.16</td><td>6</td><td>1.2</td><td>1</td><td>0.1</td><td>0.16</td><td>0.08</td></tr><tr><td>&gt;8</td><td>10</td><td>3</td><td>3</td><td>0.25</td><td>0.16</td><td>6</td><td>1.8</td><td>1.4</td><td>0.1</td><td>0.16</td><td>0.08</td></tr><tr><td>&gt;10</td><td>12</td><td>4</td><td>4</td><td>0.25</td><td>0.16</td><td>8</td><td>2.5</td><td>1.8</td><td>0.1</td><td>0.16</td><td>0.08</td></tr><tr><td>&gt;12</td><td>17</td><td>5</td><td>5</td><td>0.4</td><td>0.25</td><td>10</td><td>3</td><td>2.3</td><td>0.1</td><td>0.25</td><td>0.16</td></tr><tr><td>&gt;17</td><td>22</td><td>6</td><td>6</td><td>0.4</td><td>0.25</td><td>14</td><td>3.5</td><td>2.8</td><td>0.1</td><td>0.25</td><td>0.16</td></tr><tr><td>&gt;22</td><td>30</td><td>8</td><td>7</td><td>0.4</td><td>0.25</td><td>18</td><td>4</td><td>3.3</td><td>0.2</td><td>0.25</td><td>0.16</td></tr><tr><td>&gt;30</td><td>38</td><td>10</td><td>8</td><td>0.6</td><td>0.4</td><td>22</td><td>5</td><td>3.3</td><td>0.2</td><td>0.4</td><td>0.25</td></tr><tr><td>&gt;38</td><td>44</td><td>12</td><td>8</td><td>0.6</td><td>0.4</td><td>28</td><td>5</td><td>3.3</td><td>0.2</td><td>0.4</td><td>0.25</td></tr><tr><td>&gt;44</td><td>50</td><td>14</td><td>9</td><td>0.6</td><td>0.4</td><td>36</td><td>5.5</td><td>3.8</td><td>0.2</td><td>0.4</td><td>0.25</td></tr><tr><td>&gt;50</td><td>58</td><td>16</td><td>10</td><td>0.6</td><td>0.4</td><td>45</td><td>6</td><td>4.3</td><td>0.2</td><td>0.4</td><td>0.25</td></tr><tr><td>&gt;58</td><td>65</td><td>18</td><td>11</td><td>0.6</td><td>0.4</td><td>50</td><td>7</td><td>4.4</td><td>0.2</td><td>0.4</td><td>0.25</td></tr><tr><td>&gt;65</td><td>75</td><td>20</td><td>12</td><td>0.8</td><td>0.6</td><td>56</td><td>7.5</td><td>4.9</td><td>0.2</td><td>0.6</td><td>0.4</td></tr><tr><td>&gt;75</td><td>85</td><td>22</td><td>14</td><td>0.8</td><td>0.6</td><td>63</td><td>9</td><td>5.4</td><td>0.2</td><td>0.6</td><td>0.4</td></tr><tr><td>&gt;85</td><td>95</td><td>25</td><td>14</td><td>0.8</td><td>0.6</td><td>70</td><td>9</td><td>5.4</td><td>0.2</td><td>0.6</td><td>0.4</td></tr><tr><td>&gt;95</td><td>110</td><td>28</td><td>16</td><td>0.8</td><td>0.6</td><td>80</td><td>10</td><td>6.4</td><td>0.2</td><td>0.6</td><td>0.4</td></tr><tr><td>&gt;110</td><td>130</td><td>32</td><td>18</td><td>0.8</td><td>0.6</td><td>90</td><td>11</td><td>7.4</td><td>0.2</td><td>0.6</td><td>0.4</td></tr><tr><td>&gt;130</td><td>150</td><td>36</td><td>20</td><td>1.2</td><td>1</td><td>100</td><td>12</td><td>8.4</td><td>0.3</td><td>1</td><td>0.7</td></tr><tr><td>&gt;150</td><td>170</td><td>40</td><td>22</td><td>1.2</td><td>1</td><td>100</td><td>13</td><td>9.4</td><td>0.3</td><td>1</td><td>0.7</td></tr><tr><td>&gt;170</td><td>200</td><td>45</td><td>25</td><td>1.2</td><td>1</td><td>110</td><td>15</td><td>10.4</td><td>0.3</td><td>1</td><td>0.7</td></tr><tr><td>&gt;200</td><td>230</td><td>50</td><td>28</td><td>1.2</td><td>1</td><td>125</td><td>17</td><td>11.4</td><td>0.3</td><td>1</td><td>0.7</td></tr><tr><td>&gt;230</td><td>260</td><td>56</td><td>32</td><td>2</td><td>1.6</td><td>140</td><td>20</td><td>12.4</td><td>0.3</td><td>1.6</td><td>1.2</td></tr><tr><td>&gt;260</td><td>290</td><td>63</td><td>32</td><td>2</td><td>1.6</td><td>160</td><td>20</td><td>12.4</td><td>0.3</td><td>1.6</td><td>1.2</td></tr><tr><td>&gt;290</td><td>330</td><td>70</td><td>36</td><td>2</td><td>1.6</td><td>180</td><td>22</td><td>14.4</td><td>0.3</td><td>1.6</td><td>1.2</td></tr><tr><td>&gt;330</td><td>380</td><td>80</td><td>40</td><td>3</td><td>2.5</td><td>200</td><td>25</td><td>15.4</td><td>0.3</td><td>2.5</td><td>2</td></tr><tr><td>&gt;380</td><td>440</td><td>90</td><td>45</td><td>3</td><td>2.5</td><td>225</td><td>28</td><td>17.4</td><td>0.3</td><td>2.5</td><td>2</td></tr><tr><td>&gt;440</td><td>500</td><td>100</td><td>50</td><td>3</td><td>2.5</td><td>250</td><td>31</td><td>19.5</td><td>0.3</td><td>2.5</td><td>2</td></tr></tbody>
+				<tr>
+					<td class="table-notes" colspan="12">
+						<p id="table-note1">* свыше = невключительно, до = включительно.</p>
+					</td>
+				</tr>
+			</table>
+			<p>Длины шпонок, мм, выбираются из ряда: 6, 8, 10, 12, 14, 16, 18, 20, 22, 25, 28, 32, 36, 40, 45, 50, 56, 63, 70, 80, 90, 100, 110, 125, 140, 160, 180, 200, 220, 250, 280, 320, 360, 400, 450, 500.</p>
+			<!--  <a class="bib" href="#bib1">[1]</a> -->
+
+
+			<table class="centered">
+				<tr>
+					<th colspan="3">Поля допусков по ширине шпоночного паза в соединении</th>
+				</tr>
+				<tr>
+					<th>свободном</th>
+					<th>нормальном</th>
+					<th>плотном</th>
+				</tr>
+				<tr>
+					<td class="tile-4">
+						<div class="block-centered text-align-right">
+							вал H9<br>
+							втулка D10
+						</div>
+					</td>
+					<td class="tile-4">
+						<div class="block-centered text-align-right">
+							вал N9<br>
+							втулка JS9
+						</div>
+					</td>
+					<td class="tile-4">
+						<div class="block-centered text-align-right">
+							вал P9<br>
+							втулка P9
+						</div>
+					</td>
+				</tr>
+				<tr class="text-align-center">
+					<td>единичное и серийное производство</td>
+					<td>массовое и серийное производство</td>
+					<td>направляющие шпонки</td>
+				</tr>
+				<tr>
+					<td colspan="3" class="table-notes">Для термообработанных валов допускается H11, если это не влияет на работоспособность соединения.</td>
+				</tr>
+			</table>
+
+			<p>На рабочем чертеже должен проставляться для вала размер t1 (предпочтительно) или размер (d - t1); для втулки - размер (d + t2).</p>
+
+			<h3>Геометрические допуски шпоночного паза</h3>
+			<p>Здесь T<sub>b</sub> - допуск размера b у шпоночного паза.</p>
+			<p>Параллельность:</p>
+			<p class="block-centered">T<sub><span class="GT GT-5">параллельность</span></sub> = 1/2 T<sub>b</sub></p>
+			<p>Симметричность:</p>
+			<p class="block-centered">T<sub><span class="GT GT-9">симметричность</span></sub> = 2 T<sub>b</sub> = 4 T<sub><span class="GT GT-5">параллельность</span></sub></p>
+
+			<h3>Шероховатость шпоночного паза</h3>
+			<ul>
+				<li>у дна - Ra 6.3</li>
+				<li>
+					у боковых поверхностей (размер b):
+					<ul>
+						<li>при IT9 - Ra 3.2</li>
+						<li>при IT10 до 18 мм - Ra 3.2</li>
+						<li>при IT10 свыше 18 мм - Ra 6.3</li>
+					</ul>
+				</li>
+			</ul>
+
+			<h3>Источники</h3>
+			<ol>
+				<li id="bib1">ГОСТ 23360.</li>
+				<li id="bib2">Палей М. А. и др. Допуски и посадки: Справочник: В 2 ч. Ч. 2. - 8-е изд., перераб. и доп. - СПб.: Политехника, 2001. - 608 с.: ил. - ISBN 5-7325-0514-8 (Ч. 2), ISBN 5-7325-0512-1.</li>
+			</ol>
+		</div>
+	</div>
+
+
+	{% include footer.html %}
+</body>
+</html>

@@ -63,13 +63,6 @@ const copy_ternar = (index) => {
 	navigator.clipboard.writeText(ternar_exprs[index]);
 }
 
-const animate_copy = (button) => {
-	button.innerHTML = "&check;&nbsp;Скопировано";
-	setTimeout(() => {
-		button.innerHTML = "Копировать";
-	}, 1000);
-}
-
 
 btn_submit_input.onclick = () => {
 	all_values = [];

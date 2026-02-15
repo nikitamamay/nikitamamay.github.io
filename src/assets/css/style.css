@@ -119,18 +119,25 @@ body {
 	float: left;
 	margin: 5px 10px 5px 0;
 }
-
-.block-centered {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	width: max-content;
-}
 .allow-horizontal-scrolling {
 	overflow-x: auto;
 }
 .allow-vertical-scrolling {
 	overflow-y: auto;
+}
+
+
+.centered,
+table.centered,
+.block-centered {
+	margin-left: auto;
+	margin-right: auto;
+	width: auto;
+}
+.block-centered {
+	display: block;
+	width: max-content;
+	max-width: 100%;
 }
 
 
@@ -417,13 +424,13 @@ abbr {
 
 .main ul,
 .main ol {
-	margin-left: 60px
+	margin-left: 40px
 }
 .main ul ul,
 .main ul ol,
 .main ol ul,
 .main ol ol {
-	margin-left: 40px
+	margin-left: 30px
 }
 .main li {
 	margin: 5px 0;
@@ -435,6 +442,7 @@ abbr {
 .main img {
 	margin: 10px auto;
 	display: block;
+	max-width: 100%;
 }
 
 .main dd {
@@ -455,7 +463,12 @@ abbr {
 
 .main table {
 	border-collapse: collapse;
-	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.main .table-no-vertical-margins {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 .main td,
 .main th {
@@ -472,17 +485,6 @@ abbr {
 .main table * + p {
 	margin-top: 5px;
 }
-.main td {
-	vertical-align: top;
-}
-.main table.centered {
-  margin: 0 auto;
-  width: auto;
-}
-.main table.centered td {
-	vertical-align: middle;
-	text-align: center;
-}
 .main table .accent1 {
 	color: white;
 	background-color: var(--accent-color);
@@ -491,19 +493,32 @@ abbr {
 	color: white;
 	background-color: grey;
 }
-.main table td[colspan] {
+.table-full-width {
+	width: 100%;
+}
+
+.table-colspan-rowspan-align td[colspan] {
 	text-align: center;
 }
-.main table td[rowspan] {
+.table-colspan-rowspan-align td[rowspan] {
 	vertical-align: middle;
 }
+.main .table-notes {
+	border: none;
+	font-size: 80%;
+	text-align: left;
+}
+
+.table-hover-highlight tr:hover td:not(.table-notes) {
+	background-color: rgba(0, 0, 0, 0.066);
+}
+
 
 .main .img-contacts {
 	width: 22px;
 	height: 22px;
 	padding: 3px;
 	display: inline-block;
-	width: auto;
 	border-radius: 5px;
 	background-color: #222;
 	margin: 0;
@@ -530,9 +545,21 @@ abbr {
 }
 
 
-.text-centered {
+.text-align-center {
 	text-align: center;
 }
+.text-align-right {
+	text-align: right;
+}
+.vertical-align-top {
+	vertical-align: top;
+}
+.vertical-align-middle {
+	vertical-align: middle;
+}
+
+
+
 .card-image {
 	display: block;
 	margin: 0 auto;
@@ -554,17 +581,11 @@ abbr {
 	font-size: 10pt;
 }
 
-tr:hover td {
-	background-color: rgba(0, 0, 0, 0.066);
-}
 
 .button-submit {
 	padding: 10px 20px;
 }
 
-.table-output td:last-child {
-	text-align: right;
-}
 
 
 .sticky-headings h1,
@@ -900,7 +921,7 @@ textarea {
 
 	.main ul,
 	.main ol {
-		margin-left: 25px
+		margin-left: 20px
 	}
 
 	.footer-flex {

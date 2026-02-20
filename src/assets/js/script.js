@@ -42,8 +42,6 @@ const modal_switch = (increment = 0) => {
 	if (i < 0) { i = list.length - 1 }
 	if (i >= list.length) { i = 0 }
 
-	console.log(i, list[i])
-
 	list[i].show_in_modal();
 }
 
@@ -59,6 +57,9 @@ const animate_copy = (element) => {
 
 
 document.addEventListener("DOMContentLoaded", () => {
+	/**
+	 * Назначение обработчиков событий раскрытия картинки в модальном окне
+	 */
 	for (let el of document.querySelectorAll(".scalable-with-modal")) {
 		let img = null;
 		if (el.tagName == "IMG") {
@@ -100,4 +101,25 @@ document.addEventListener("DOMContentLoaded", () => {
 		};
 		img.addEventListener("click", img.show_in_modal);
 	}
+
+	/**
+	 * Анимации .animation-appear-on-scroll
+	 */
+	const observer = new IntersectionObserver(
+		(entries, observer) => {
+			entries.forEach((entry) => {
+				if (entry.isIntersecting && (entry.intersectionRect.height > 120 || entry.target.clientHeight < 120)) {
+					entry.target.classList.add("animation-started");
+				}
+			});
+		}, {
+			root: null,
+			threshold: 0.1,
+		}
+	);
+	for (let el of document.querySelectorAll(".animation-appear-on-scroll")) {
+		observer.observe(el);
+	}
+
+
 })

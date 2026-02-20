@@ -43,8 +43,8 @@ title: Условные выражения в Компас-3D
 
 			<hr>
 
-			<div class="scrollarea">
-				<table id="table_input" class="table-hover-highlight table-no-vertical-margins">
+			<div class="scrollarea allow-horizontal-scrolling allow-vertical-scrolling">
+				<table id="table_input" class="monospace table-hover-highlight table-no-vertical-margins">
 					<tr>
 						<td class="placeholder">Здесь будет предпросмотр исходной таблицы...</td>
 					</tr>
@@ -53,11 +53,13 @@ title: Условные выражения в Компас-3D
 
 			<hr>
 
-			<table id="table_results" class="monospace table-hover-highlight">
-				<tr>
-					<td class="placeholder">Здесь будет результат...</td>
-				</tr>
-			</table>
+			<div class="allow-horizontal-scrolling">
+				<table id="table_results" class="monospace table-hover-highlight">
+					<tr>
+						<td class="placeholder">Здесь будет результат...</td>
+					</tr>
+				</table>
+			</div>
 
 		</div>
 	</div>
@@ -72,13 +74,14 @@ title: Условные выражения в Компас-3D
 			<ul>
 				<li>размеры шпонки и шпоночного паза - ширина <code>b</code>, высота <code>h</code>, скругления шпонки <code>c</code>, глубины паза на валу <code>t1</code> и во втулке <code>t2</code> - связаны с диаметром вала <code>d</code>;</li>
 				<li>размеры стандартных изделий (болтов, гаек, шайб и т. д.) зависят от номинального диаметра резьбы;</li>
+				<li>размеры фитингов РВД по каталогу определяются диаметром рукава и номинальным диаметром конуса;</li>
 				<li>можно выделить зависимость, например, размеров корпуса редуктора от межосевого расстояния;</li>
 				<li>и др.</li>
 			</ul>
 
 			<p>Зависимость между двумя переменными можно выразить непрерывной функцией, например, <code>y = x * 0.8</code> или <code>y = x^(1/3)</code>. Однако, такие простые зависимости для вышеобозначенных примеров встречаются лишь в общем виде, причем размеры округлены не по правилам математики, а по правилам машиностроения.</p>
 
-			<p>Известен способ решения проблемы задания произвольных (в том числе дискретных) зависимостей между переменными с помощью <a target="_blank" href="https://www.youtube.com/watch?v=aCyWhqLNKH8&">графиков из сплайнов</a>, предложенный Константином Корюкиным. Такой метод несколько трудоемкий, а в случаях, когда нужно задать зависимость в диапазонах переменной <code>x</code>, и вовсе неприменимый.</p>
+			<p>Известен способ решения проблемы задания произвольных (в том числе дискретных (ступенчатых)) зависимостей между переменными с помощью <a target="_blank" href="https://rutube.ru/video/85266ebfea970a069df87deadf4de801/?r=wd">графиков из сплайнов</a>, предложенный Константином Корюкиным. Такой метод более трудоемкий, а в случаях, когда нужно задать ступенчатую зависимость в диапазонах переменной <code>x</code>, и вовсе неприменимый.</p>
 
 			<p>Еще один метод - создание условных (тернарных) выражений. Условные выражения отлично подходят для создания ступенчатых зависимостей, которые выражаются в виде таблицы.</p>
 
@@ -123,20 +126,52 @@ title: Условные выражения в Компас-3D
 				<p class="scalable-additional-content"><b class="b-accent">Шаг 5.</b> Завершите построения параметрической модели с привязкой к переменным.</p>
 			</div>
 		</div>
+		<div class="positioner">
+			<p>Когда необходимо задать зависимость от нескольких переменных <code>x1</code>, <code>x2</code>, <code>x3</code> (включая даже переменные-флаги), следует собрать из них переменную в виде суммы, например, <code>aaa = x1*10000 + x2*100 + x3</code>, и затем создать таблицу, где в первом столбце будет представлена эта переменная <code>aaa</code>.</p>
+		</div>
 	</div>
 
 	<div class="main grey">
 		<div class="positioner">
 			<h2>Примеры использования</h2>
-			<p>Здесь и далее под словами, например, "параметризация завязана на диаметр вала" понимается следующее: переменная, отвечающая за диаметр вала, сделана внешней и от нее через тернарные выражения зависят другие переменные, отвечающие за другие размеры. <b>То есть мораль такова: достаточно изменить значение одной основной переменной, чтобы изменились другие зависимые переменные и размеры модели.</b></p>
+			<!-- <p>Здесь и далее под словами, например, "параметризация завязана на диаметр вала" понимается следующее: переменная, отвечающая за диаметр вала, сделана внешней и от нее через тернарные выражения зависят другие переменные, отвечающие за другие размеры. <b>То есть мораль такова: достаточно изменить значение одной основной переменной, чтобы изменились другие зависимые переменные и размеры модели.</b></p> -->
+			 <p>Нажмите на картинку, чтобы раскрыть пояснения.</p>
 		</div>
 		<div class="positioner flex-tiles flex-tiles-3 gallery-images-16-9">
+			<div>
+				<div class="img-holder">
+					<img class="gallery-image image-bordered scalable-with-modal" src="examples/фитинг-рвд.png" alt="">
+				</div>
+				<p class="text-align-center">Фитинг РВД</p>
+				<p class="shown-only-in-modal scalable-additional-content">Фитинг РВД DKO угловой 90° c гайкой из каталога поставщика гидрооборудования. Модель поддерживает типы DKOL и DKOS. Назависимых переменных здесь 3 (три): внутренний диаметр рукава <code>D_rvd</code>, диаметр конуса <code>D_DKO</code>, переменная-флаг <code>is_L_0_or_S_1</code>, обозначающая типы DKOL или DKOS - связи этих значений выражены в виде сумм в переменных <code>xxx</code>, определяющей размеры фитинга (по одной таблице), и <code>yyy</code>, определяющей размеры уплотняющего конуса (по другой таблице).</p>
+			</div>
+			<div>
+				<div class="img-holder">
+					<img class="gallery-image image-bordered scalable-with-modal" src="examples/штуцер-рвд.png" alt="">
+				</div>
+				<p class="text-align-center">Штуцер РВД</p>
+				<p class="shown-only-in-modal scalable-additional-content">Штуцер РВД с метрической резьбой из каталога поставщика гидрооборудования. Независимыми переменными являются диаметр конуса <code>D_DKO</code> и переменная-флаг <code>is_L_0_or_S_1</code>, обозначающая типы DKOL или DKOS - их связь выражена в виде суммы в переменной<code>yyy</code>, определяющей размеры уплотняющего конуса и ввёртной части.</p>
+			</div>
+			<div>
+				<div class="img-holder">
+					<img class="gallery-image image-bordered scalable-with-modal" src="examples/брс-iso-a.png" alt="">
+				</div>
+				<p class="text-align-center">БРС ISO A</p>
+				<p class="shown-only-in-modal scalable-additional-content">Быстроразъемное соединение (БРС) ISO тип A из каталога поставщика гидрооборудования. Модель условная (габаритная); тела деталей предполагается копировать в отдельные модели розетки и штекера - поэтому тела пересекаются в модели БРС в сборе, так как они изображены для разомкнутых розетки и штекера. Независимой переменной является диаметр <code>DN</code>.</p>
+			</div>
+			<div>
+				<div class="img-holder">
+					<img class="gallery-image image-bordered scalable-with-modal" src="examples/полумуфта.png" alt="">
+				</div>
+				<p class="text-align-center">Полумуфта кулачковая</p>
+				<p class="shown-only-in-modal scalable-additional-content">Кулачковая полумуфта под расточку с упругим элементом из каталога поставщика. Независимыми являются переменные <code>size</code> (типоразмер) и флаг <code>is_A_B_BL</code> (вариант исполнения). Модель служит для последующего копирования тел в отдельные модели полумуфт и упругого элемента.</p>
+			</div>
 			<div>
 				<div class="img-holder">
 					<img class="gallery-image image-bordered scalable-with-modal" src="examples/подшипник.png" alt="">
 				</div>
 				<p class="text-align-center">Подшипник по ГОСТ 8338</p>
-				<p class="shown-only-in-modal scalable-additional-content">Подшипник по ГОСТ 8338 типоразмеров 204...215, 304...315. Независимой переменной является число, обозначающее типоразмер; от него зависят все размеры.</p>
+				<p class="shown-only-in-modal scalable-additional-content">Подшипник по ГОСТ 8338 типоразмеров 204...215, 304...315. Независимой переменной является типоразмер <code>N</code>.</p>
 			</div>
 			<div>
 				<div class="img-holder">
@@ -159,14 +194,14 @@ title: Условные выражения в Компас-3D
 				<p class="text-align-center">Конец вала по ГОСТ 12080/12081</p>
 				<p class="shown-only-in-modal scalable-additional-content">Конец вала по ГОСТ 12080/12081 длинного исполнения. Параметризация завязана на диаметр вала и флаг "конический/цилиндрический".</p>
 			</div>
-			<div>
+			<!-- <div>
 				<div class="img-holder">
 					<img class="gallery-image image-bordered scalable-with-modal" src="examples/болт.png" alt="">
 				</div>
 				<p class="text-align-center">Болт по ГОСТ 7798</p>
 				<p class="shown-only-in-modal scalable-additional-content">Болт по ГОСТ 7798. Параметризация завязана на диаметр и шаг резьбы, требуемую длину болта (действительная выбирается как ближайшая большая из стандартного ряда). Если шаг выбран как "0", используется крупный.</p>
-			</div>
-			<div>
+			</div> -->
+			<!-- <div>
 				<div class="img-holder">
 					<img class="gallery-image image-bordered scalable-with-modal" src="examples/гайка.png" alt="">
 				</div>
@@ -179,7 +214,7 @@ title: Условные выражения в Компас-3D
 				</div>
 				<p class="text-align-center">Шайба по ГОСТ 11371</p>
 				<p class="shown-only-in-modal scalable-additional-content">Шайба по ГОСТ 11371. Параметризация завязана на диаметр резьбы крепежной детали.</p>
-			</div>
+			</div> -->
 			<div>
 				<div class="img-holder">
 					<img class="gallery-image image-bordered scalable-with-modal" src="examples/болтовое соединение.png" alt="">
